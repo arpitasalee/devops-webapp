@@ -15,3 +15,13 @@ jobs:
 
       - name: Print Build Message
         run: echo "CI Pipeline Executed Successfully!"
+
+      - name: Send Slack Notification
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": "CI Build Successful for devops-webapp!"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
